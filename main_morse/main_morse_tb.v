@@ -5,7 +5,7 @@ module main_morse_tb ();
     
     reg i_clk, i_rst;
 
-
+    wire o_the_end;
     wire morse;
 
     sender my_sender(
@@ -17,13 +17,16 @@ module main_morse_tb ();
     receiver my_receiver(
         .i_clk(i_clk),
         .i_rst(i_rst),
-        .i_data_morse(morse)
+        .i_data_morse(morse),
+        .o_the_end(o_the_end)
     );
 
     initial begin
         i_clk = 0;
-        forever # ( t / 2 ) i_clk = ~i_clk;
+        forever # ( t / 2 ) i_clk = ~i_clk;    
     end
+   
+   
      
     initial begin
         i_rst = 1;
